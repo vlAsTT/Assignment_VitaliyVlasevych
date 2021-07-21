@@ -12,6 +12,9 @@ namespace Items.Core
         Food
     }
 
+    /// <summary>
+    /// All colors of items available in the game
+    /// </summary>
     public enum ItemColor
     {
         Default = 0,
@@ -26,20 +29,20 @@ namespace Items.Core
     public class Item
     {
         /// <summary>
-        /// 
+        /// Type of the item
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public ItemType itemType;
 
         /// <summary>
-        /// 
+        /// Color if the item
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public ItemColor color;
         
         /// <summary>
-        /// 
+        /// Points that item gives on pickup
         /// </summary>
-        public int points;
+        public int points; // Could possibly be extracted in the new ItemFood class that will inherit from Item
     }
 }

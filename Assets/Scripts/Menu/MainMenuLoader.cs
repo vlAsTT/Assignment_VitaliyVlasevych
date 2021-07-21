@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 namespace Menu
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MainMenuLoader : MonoBehaviour
     {
         [SerializeField] private GameObject menu;
