@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5713375582223958162}
   - component: {fileID: 5713375582223958161}
-  - component: {fileID: 8970150768351270583}
   m_Layer: 0
   m_Name: Item Manager
   m_TagString: Untagged
@@ -45,28 +44,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnArea:
-    LeftTopCorner: {x: -10, y: 10}
-    RightTopCorner: {x: 10, y: 10}
-    LeftBottomCorner: {x: -10, y: -10}
-    RightBottomCorner: {x: 10, y: -10}
+    leftTopCorner: {x: -10, y: 10}
+    rightTopCorner: {x: 10, y: 10}
+    leftBottomCorner: {x: -10, y: -10}
+    rightBottomCorner: {x: 10, y: -10}
   itemPrefabsDictionary:
-  - Type: 1
-    Color: 1
-    Prefab: {fileID: 6260623507121312386, guid: 340c22637a010b445b9f157c31482408, type: 3}
-  - Type: 1
-    Color: 2
-    Prefab: {fileID: 5429315903345394212, guid: 9476c6604359c7f449dfdbc76ce4dd86, type: 3}
+  - type: 1
+    color: 1
+    prefab: {fileID: 6260623507121312386, guid: 340c22637a010b445b9f157c31482408, type: 3}
+  - type: 1
+    color: 2
+    prefab: {fileID: 5429315903345394212, guid: 9476c6604359c7f449dfdbc76ce4dd86, type: 3}
   jsonItemsFile: {fileID: 4900000, guid: 8420364a3c8408a4dba8907ad022f404, type: 3}
---- !u!114 &8970150768351270583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5713375582223958160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9313726f80ba67d4998cc6dc1029397f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObjects: []

@@ -107,6 +107,8 @@ namespace Core
 
         private void SpawnRandomItem()
         {
+            Debug.Log("Item spawn");
+            
             var obj = _itemsDB.GetItemAt(Random.Range(0, _itemsDB.items.Count));
             
             foreach (var item in itemPrefabsDictionary)
