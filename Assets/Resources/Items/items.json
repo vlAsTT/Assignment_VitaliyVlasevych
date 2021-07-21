@@ -1,0 +1,15 @@
+{
+  "items":
+  [
+    {
+      "itemType": "Food",
+      "color": "Red",
+      "points": "15"
+    },
+    {
+      "itemType": "Food",
+      "color": "Blue",
+      "points": "20"
+    }
+  ]
+}

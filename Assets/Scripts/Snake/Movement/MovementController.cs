@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
@@ -66,11 +64,15 @@ namespace Snake.Movement
         #endregion
 
         #endregion
+
+        #region Methods
         
+        #region Unity Start & Update
+
         /// <summary>
         /// Initialization of all variables, references & setting up direction
         /// </summary>
-        void Start()
+        private void Start()
         {
             _currentSpeed = baseSpeed;
             
@@ -85,6 +87,10 @@ namespace Snake.Movement
         {
             Move();
         }
+
+        #endregion
+
+        #region Initialization
 
         /// <summary>
         /// Initializes Direction of the snake, resets body to be heading in the right direction and sets all forward vectors
@@ -138,17 +144,7 @@ namespace Snake.Movement
                     throw new ArgumentOutOfRangeException();
             }
         }
-
-        /// <summary>
-        /// Returns a random direction
-        /// </summary>
-        /// <see cref="PlayerDirection"/>
-        /// <returns>Random PlayerDirection</returns>
-        private PlayerDirection GetRandomDirection()
-        {
-            return (PlayerDirection)Random.Range(0, (int) PlayerDirection.Count);
-        }
-
+        
         /// <summary>
         /// Initializes all references to snake body parts
         /// </summary>
@@ -173,10 +169,24 @@ namespace Snake.Movement
             _snakeHead = _snakeParts[0];
         }
 
+        #endregion
+
+        #region Movement
+
+        /// <summary>
+        /// Returns a random direction
+        /// </summary>
+        /// <see cref="PlayerDirection"/>
+        /// <returns>Random PlayerDirection</returns>
+        private PlayerDirection GetRandomDirection()
+        {
+            return (PlayerDirection)Random.Range(0, (int) PlayerDirection.Count);
+        }
+
         /// <summary>
         /// Handles the movement of all snake body parts
         /// </summary>
-        void Move()
+        private void Move()
         {
             // Snake Head Movement
             _snakeParts[0].Translate(_snakeParts[0].forward * (_currentSpeed * Time.smoothDeltaTime), Space.World);
@@ -200,8 +210,6 @@ namespace Snake.Movement
             }
         }
         
-        #region Methods
-
         /// <summary>
         /// Handles the player's input update and rotates snake head accordingly to received input
         /// </summary>
@@ -236,6 +244,8 @@ namespace Snake.Movement
                 }
             }
         }
+
+        #endregion
 
         // Used for debug to see the forward transform of the snake
         // private void OnDrawGizmos()

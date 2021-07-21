@@ -19,6 +19,10 @@ namespace Snake.Input
 
         #endregion
 
+        #region Methods
+
+        #region Initialization
+
         /// <summary>
         /// Initializes all references to the components
         /// </summary>
@@ -26,6 +30,10 @@ namespace Snake.Input
         {
             _movementController = GetComponent<MovementController>();
         }
+
+        #endregion
+
+        #region Movement
 
         /// <summary>
         /// Handles player's movement input & sends it to the movement controller
@@ -38,5 +46,9 @@ namespace Snake.Input
             var axis = ctx.ReadValue<Vector2>();
             _movementController.UpdateMovementDirection(axis);
         }
+
+        #endregion
+
+        #endregion
     }
 }
