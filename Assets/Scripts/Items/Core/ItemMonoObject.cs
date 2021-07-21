@@ -1,12 +1,11 @@
-using Items.Core;
 using UnityEngine;
 
-namespace Items.Food
+namespace Items.Core
 {
     /// <summary>
     /// 
     /// </summary>
-    public class FoodObject : MonoBehaviour
+    public class ItemMonoObject : MonoBehaviour
     {
         /// <summary>
         /// 

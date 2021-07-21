@@ -1,4 +1,6 @@
 using System;
+using Core;
+using Items.Core;
 using Snake.Movement;
 using UnityEngine;
 
@@ -17,11 +19,24 @@ namespace Snake.Gameplay
 
         private void OnTriggerEnter(Collider other)
         {
-            // Call an event
-            ItemDelegates.OnItemDestroy();
+            if (other.tag.Equals("Item"))
+            {
+                // Call an event
+                ItemDelegates.OnItemDestroy();
             
-            // Destroy item object
-            Destroy(other.gameObject);
+                // Call GameManager to increase score & streak
+                var data = other.GetComponent<ItemMonoObject>().GetData();
+                GameManager.Instance.AddScore(data.color, data.points);
+                
+                // Destroy item object
+                Destroy(other.gameObject);
+            }
+            else if (other.tag.Equals("Snake") || other.tag.Equals("Edge"))
+            {
+                // Call Game Over method on GameManager that stops game and calls UI manager
+                GameManager.Instance.GameOver();
+            }
+            
         }
 
         #endregion

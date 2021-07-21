@@ -103,7 +103,10 @@ namespace Core
                     Vector3 spawnPosition = GetRandomPointBetweenVectors(pointOne, pointTwo);
 
                     // Increasing the height by 0.5f to not be stuck in the ground
-                    Instantiate(item.Prefab, new Vector3(spawnPosition.x, 0.5f, spawnPosition.z), Quaternion.identity);
+                    var newItem = Instantiate(item.Prefab, new Vector3(spawnPosition.x, 0.5f, spawnPosition.z), Quaternion.identity);
+                    
+                    // Setting data of an item to the instance
+                    newItem.GetComponent<ItemMonoObject>().SetData(obj);
                 }
             }
         }

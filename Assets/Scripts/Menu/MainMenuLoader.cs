@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +13,8 @@ namespace Menu
         [SerializeField] private GameObject menu;
         [SerializeField] private GameObject loadingScreen;
         [SerializeField] private Image loadingProgressBar;
+
+        [SerializeField] private TextMeshProUGUI topScoreField;
 
         private List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
         
@@ -27,11 +31,14 @@ namespace Menu
 
         public void ShowTopScore()
         {
-            
+            topScoreField.text = PlayerPrefs.GetInt("TopScore", 0).ToString();
         }
 
         public void Exit()
         {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#endif
             Application.Quit(1);
         }
 
