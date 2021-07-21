@@ -59,3 +59,4 @@ I will be glad to answer any of your questions & looking forward for your reply!
 # Assets
 ------------------------------------
 - [Low Poly Ultimate Pack by polyperfect](https://assetstore.unity.com/packages/3d/props/low-poly-ultimate-pack-54733) - I would do just a simpler level, but as visuals are always important - I decided to use this great low poly pack for the level design
+- [Simple Fantasy UI ](https://assetstore.unity.com/packages/2d/gui/icons/simple-fantasy-ui-140925) - Originally I had more simple design, same as to the other asset pack used, as it's only for the visuals - I would find a replacement for it.
