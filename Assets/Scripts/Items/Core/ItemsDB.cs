@@ -14,7 +14,7 @@ namespace Items.Core
         /// <summary>
         /// 
         /// </summary>
-        private List<Item> items = new List<Item>();
+        public List<Item> items = new List<Item>();
 
         #endregion
 

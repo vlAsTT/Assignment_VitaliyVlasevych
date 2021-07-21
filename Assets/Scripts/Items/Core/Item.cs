@@ -1,3 +1,6 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace Items.Core
 {
     /// <summary>
@@ -9,6 +12,13 @@ namespace Items.Core
         Food
     }
 
+    public enum ItemColor
+    {
+        Default = 0,
+        Red,
+        Blue
+    }
+
     /// <summary>
     /// Data that each single item contains
     /// </summary>
@@ -18,12 +28,14 @@ namespace Items.Core
         /// <summary>
         /// 
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public ItemType itemType;
 
         /// <summary>
         /// 
         /// </summary>
-        public string color;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public ItemColor color;
         
         /// <summary>
         /// 

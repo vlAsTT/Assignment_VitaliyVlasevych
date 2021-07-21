@@ -15,7 +15,6 @@ namespace Core
         private void Start()
         {
             SceneManager.LoadSceneAsync("_Scenes/Menu/MainMenu");
-            SceneManager.LoadSceneAsync("_Scenes/Core", LoadSceneMode.Additive);
             
             // DontDestroyOnLoad(gameObject);
         }

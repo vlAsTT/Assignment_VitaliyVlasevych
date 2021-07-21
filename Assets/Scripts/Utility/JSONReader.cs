@@ -1,20 +1,19 @@
-using UnityEngine;
 using Items.Core;
+using Newtonsoft.Json;
+using UnityEngine;
 
-/// <summary>
-/// 
-/// </summary>
-public static class JSONReader
+namespace Utility
 {
-    public static ItemsDB ReadItemsFromJson(TextAsset jsonFile)
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class JSONReader
     {
-        ItemsDB itemsJson = JsonUtility.FromJson<ItemsDB>(jsonFile.text);
-
-        foreach (var item in itemsJson.GetItems())
+        public static ItemsDB ReadItemsFromJson(TextAsset jsonFile)
         {
-            Debug.Log($"Found item: {item.points}, {item.color}");
-        }
+            ItemsDB itemsJson = JsonConvert.DeserializeObject<ItemsDB>(jsonFile.text);
 
-        return itemsJson;
+            return itemsJson;
+        }
     }
 }
