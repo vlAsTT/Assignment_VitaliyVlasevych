@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Items.Core;
+using Snake.Gameplay;
 using UnityEngine;
 using Utility;
 using Random = UnityEngine.Random;
@@ -67,15 +69,24 @@ namespace Core
         /// </summary>
         private void Start()
         {
+            ItemDelegates.onItemDestroy += SpawnRandomItem;
+            
             _itemsDB = JSONReader.ReadItemsFromJson(jsonItemsFile);
 
             SpawnRandomItem();
+        }
+
+        private void OnDestroy()
+        {
+            ItemDelegates.onItemDestroy -= SpawnRandomItem;
         }
 
         #region Item Spawn
 
         private void SpawnRandomItem()
         {
+            Debug.Log("Spawn item");
+            
             var obj = _itemsDB.GetItemAt(Random.Range(0, _itemsDB.items.Count));
             foreach (var item in itemPrefabsDictionary)
             {

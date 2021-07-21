@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Snake.Gameplay;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
@@ -33,6 +34,7 @@ namespace Snake.Movement
         /// <summary>
         /// 
         /// </summary>
+        [Header("Movement Information")]
         [Tooltip("Initial speed of the snake")][SerializeField] private float baseSpeed = 10.0f;
 
         /// <summary>
@@ -44,7 +46,15 @@ namespace Snake.Movement
         /// Distance between snake body parts
         /// </summary>
         /// <seealso cref="InitSnakeParts"/>
-        private static float BetweenBodyDistance => .4f;
+        private static float BetweenBodyDistance => .6f;
+
+        #endregion
+
+        #region Tail Spawn Information
+
+        [Header("Tail Spawn Information")]
+        [SerializeField] private GameObject tailPrefab;
+        [SerializeField] private GameObject tailObject;
 
         #endregion
 
@@ -67,13 +77,16 @@ namespace Snake.Movement
 
         #region Methods
         
-        #region Unity Start & Update
+        #region Unity Standard
 
         /// <summary>
         /// Initialization of all variables, references & setting up direction
         /// </summary>
         private void Start()
         {
+            // Subscribing to the Item Update event
+            ItemDelegates.onItemDestroy += SpawnTail;
+            
             _currentSpeed = baseSpeed;
             
             InitSnakeParts();
@@ -86,6 +99,15 @@ namespace Snake.Movement
         private void Update()
         {
             Move();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void OnDestroy()
+        {
+            // Unsubscribing from the Item Update event
+            ItemDelegates.onItemDestroy -= SpawnTail;
         }
 
         #endregion
@@ -243,6 +265,17 @@ namespace Snake.Movement
                         break;
                 }
             }
+        }
+
+        #endregion
+
+        #region Gameplay
+
+        private void SpawnTail()
+        {
+            var tailPart = Instantiate(tailPrefab, _snakeParts[_snakeParts.Count - 1].position, Quaternion.identity);
+            
+            _snakeParts.Add(tailPart.transform);
         }
 
         #endregion

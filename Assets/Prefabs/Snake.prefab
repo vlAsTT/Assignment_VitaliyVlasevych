@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7021827461954371698}
   - component: {fileID: 4037616312416530457}
   - component: {fileID: 3294873139268183164}
+  - component: {fileID: 8128965273712873060}
   m_Layer: 0
   m_Name: Tail
   m_TagString: Snake
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899767159913299278}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.2}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7890460666955027472}
@@ -91,11 +92,27 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899767159913299278}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.49999997
   m_Center: {x: 0, y: 0.000000029802322, z: -0.000000059604645}
+--- !u!54 &8128965273712873060
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899767159913299278}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4080482412009442652
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,6 +125,7 @@ GameObject:
   - component: {fileID: 4080482412009442649}
   - component: {fileID: 4080482412009442650}
   - component: {fileID: 6928891765655107880}
+  - component: {fileID: 5766323354902399424}
   m_Layer: 0
   m_Name: Head
   m_TagString: Snake
@@ -192,6 +210,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.49999997
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5766323354902399424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4080482412009442652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 280b3e8dc71b6e04f9ad9f7ded12642d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementController: {fileID: 0}
 --- !u!1 &4430010109370838383
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +235,7 @@ GameObject:
   - component: {fileID: 1612920561}
   - component: {fileID: 7335138125936183661}
   - component: {fileID: 7707075411082824922}
+  - component: {fileID: 4664323574530232846}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Player
@@ -241,6 +273,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 3
+  tailPrefab: {fileID: 7515019340633815773, guid: b3ed25f5455463440b9abb6c869ced6a, type: 3}
+  tailObject: {fileID: 0}
 --- !u!114 &7335138125936183661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,6 +337,22 @@ MonoBehaviour:
   m_DefaultActionMap: Game
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!54 &4664323574530232846
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4430010109370838383}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7884827965462901601
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7884827965462901601}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.7}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7890460666955027472}
