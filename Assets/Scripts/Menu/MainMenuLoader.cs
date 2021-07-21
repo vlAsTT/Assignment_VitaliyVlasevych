@@ -35,6 +35,10 @@ namespace Menu
         /// <seealso cref="Image"/>
         [Tooltip("Reference to the Image of Loading Bar Progress")][SerializeField] private Image loadingProgressBar;
 
+        /// <summary>
+        /// Reference to the top score text object
+        /// </summary>
+        [Tooltip("Reference to the top score text object that displays the top score")]
         [SerializeField] private TextMeshProUGUI topScoreField;
 
         #endregion
@@ -48,6 +52,21 @@ namespace Menu
 
         #region Methods
 
+        #region Unity Standard
+
+        /// <summary>
+        /// Checks that all variables are initialized
+        /// </summary>
+        private void Start()
+        {
+            if (!menu || !loadingScreen || !loadingProgressBar || !topScoreField)
+            {
+                Debug.LogError($"Some variables are not initialized correctly at {name}");
+            }
+        }
+
+        #endregion
+        
         #region Menu Buttons Methods
 
         /// <summary>

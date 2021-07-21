@@ -285,6 +285,12 @@ namespace Snake.Movement
         /// <seealso cref="_snakeParts"/>
         private void SpawnTail()
         {
+            if (!tailPrefab)
+            {
+                Debug.LogError($"Tail Prefab is missing at {name}");
+                return;;
+            }
+            
             var tailPart = Instantiate(tailPrefab, _snakeParts[_snakeParts.Count - 1].position, Quaternion.identity);
             
             _snakeParts.Add(tailPart.transform);
