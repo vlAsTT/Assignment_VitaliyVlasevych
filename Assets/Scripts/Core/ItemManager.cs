@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Items.Core;
 using Snake.Gameplay;
@@ -9,67 +8,88 @@ using Random = UnityEngine.Random;
 namespace Core
 {
     /// <summary>
-    /// 
+    /// Boundaries within items can be spawned
+    /// Defined via 4 Vector2 that should correspond to points in the world of (X, 0, Z)
     /// </summary>
     [System.Serializable]
     public class SpawnBoundaries
     {
-        public Vector2 LeftTopCorner;
-        public Vector2 RightTopCorner;
-        public Vector2 LeftBottomCorner;
-        public Vector2 RightBottomCorner;
+        public Vector2 leftTopCorner;
+        public Vector2 rightTopCorner;
+        public Vector2 leftBottomCorner;
+        public Vector2 rightBottomCorner;
     }
 
     /// <summary>
-    /// 
+    /// Creates a link between data that defines item and according prefab that should be instantiated on runtime
     /// </summary>
+    /// <seealso cref="Item"/>
+    /// <seealso cref="ItemType"/>
+    /// <seealso cref="ItemColor"/>
     [System.Serializable]
     public class ItemPrefab
     {
-        public ItemType Type;
-        public ItemColor Color;
-        public GameObject Prefab;
+        public ItemType type;
+        public ItemColor color;
+        public GameObject prefab;
     }
     
     /// <summary>
-    /// 
+    /// Manager that handles all items operations including loading them from json file(s) and spawning
     /// </summary>
+    /// <seealso cref="Item"/>
+    /// <seealso cref="ItemsDB"/>
     public class ItemManager : MonoBehaviour
     {
         #region Variables
 
         /// <summary>
-        /// 
+        /// Defines a rectangle within of which items can be spawned
         /// </summary>
-        [Header("Spawn Information")] 
-        [Tooltip("")] [SerializeField] private SpawnBoundaries spawnArea;
+        /// <seealso cref="SpawnBoundaries"/>
+        [Header("Spawn Information")] [Tooltip("Four points in the world that defines an area where items can be spawned")] 
+        [SerializeField] private SpawnBoundaries spawnArea;
         
         /// <summary>
-        /// 
+        /// Maps core item data to the prefab that should be instantiated
         /// </summary>
-        [Tooltip("")][SerializeField] private List<ItemPrefab> itemPrefabsDictionary;
+        /// <seealso cref="ItemPrefab"/>
+        [Tooltip("Mapping between item data and prefab that will be instantiated when this data is met")]
+        [SerializeField] private List<ItemPrefab> itemPrefabsDictionary;
         
         /// <summary>
-        /// 
+        /// Reference to the json file with all items information
         /// </summary>
+        /// <seealso cref="TextAsset"/>
         [Space(10)]
-        [SerializeField] private TextAsset jsonItemsFile;
+        [Tooltip("Select a JSON file with all items information")][SerializeField] private TextAsset jsonItemsFile;
 
         /// <summary>
-        /// 
+        /// Database of all items available for spawn
         /// </summary>
+        /// <seealso cref="ItemsDB"/>
         private ItemsDB _itemsDB;
 
         #endregion
         
         #region Methods
 
+        #region Unity Standard
+
         /// <summary>
-        /// 
+        /// Initializes items database and item spawning methods/events
         /// </summary>
         private void Start()
         {
+            // Subscribe to onItemDestroy event
             ItemDelegates.onItemDestroy += SpawnRandomItem;
+
+            // Load all items from the JSON file - if there is an asset
+            if (!jsonItemsFile)
+            {
+                Debug.LogError($"TextAsset is missing at {name}");
+                return;
+            }
             
             _itemsDB = JSONReader.ReadItemsFromJson(jsonItemsFile);
 
@@ -81,33 +101,33 @@ namespace Core
             ItemDelegates.onItemDestroy -= SpawnRandomItem;
         }
 
+        #endregion
+
         #region Item Spawn
 
         private void SpawnRandomItem()
         {
-            Debug.Log("Spawn item");
-            
             var obj = _itemsDB.GetItemAt(Random.Range(0, _itemsDB.items.Count));
+            
             foreach (var item in itemPrefabsDictionary)
             {
-                if (item.Color == obj.color && item.Type == obj.itemType)
-                {
-                    Vector3 pointOne = GetRandomPointBetweenVectors(
-                        new Vector3(spawnArea.LeftBottomCorner.x, 0f, spawnArea.LeftBottomCorner.y),
-                        new Vector3(spawnArea.LeftTopCorner.x, 0f, spawnArea.LeftTopCorner.y));
+                if (item.color != obj.color || item.type != obj.itemType) continue;
+                
+                Vector3 pointOne = GetRandomPointBetweenVectors(
+                    new Vector3(spawnArea.leftBottomCorner.x, 0f, spawnArea.leftBottomCorner.y),
+                    new Vector3(spawnArea.leftTopCorner.x, 0f, spawnArea.leftTopCorner.y));
 
-                    Vector3 pointTwo = GetRandomPointBetweenVectors(
-                        new Vector3(spawnArea.RightBottomCorner.x, 0f, spawnArea.RightBottomCorner.y),
-                        new Vector3(spawnArea.RightTopCorner.x, 0f, spawnArea.RightTopCorner.y));
+                Vector3 pointTwo = GetRandomPointBetweenVectors(
+                    new Vector3(spawnArea.rightBottomCorner.x, 0f, spawnArea.rightBottomCorner.y),
+                    new Vector3(spawnArea.rightTopCorner.x, 0f, spawnArea.rightTopCorner.y));
 
-                    Vector3 spawnPosition = GetRandomPointBetweenVectors(pointOne, pointTwo);
+                Vector3 spawnPosition = GetRandomPointBetweenVectors(pointOne, pointTwo);
 
-                    // Increasing the height by 0.5f to not be stuck in the ground
-                    var newItem = Instantiate(item.Prefab, new Vector3(spawnPosition.x, 0.5f, spawnPosition.z), Quaternion.identity);
+                // Increasing the height by 0.5f to not be stuck in the ground
+                var newItem = Instantiate(item.prefab, new Vector3(spawnPosition.x, 0.5f, spawnPosition.z), Quaternion.identity);
                     
-                    // Setting data of an item to the instance
-                    newItem.GetComponent<ItemMonoObject>().SetData(obj);
-                }
+                // Setting data of an item to the instance
+                newItem.GetComponent<ItemMonoObject>().SetData(obj);
             }
         }
 
