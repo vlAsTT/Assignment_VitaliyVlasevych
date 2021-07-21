@@ -7,6 +7,7 @@ namespace Snake.Input
     /// <summary>
     /// Handles all Player's Input
     /// </summary>
+    /// <seealso cref="MovementController"/>
     [RequireComponent(typeof(MovementController))]
     public class InputController : MonoBehaviour
     {
@@ -15,13 +16,12 @@ namespace Snake.Input
         /// <summary>
         /// Reference to the Movement Controller
         /// </summary>
+        /// <seealso cref="MovementController"/>
         private MovementController _movementController;
 
         #endregion
 
         #region Methods
-
-        #region Initialization
 
         /// <summary>
         /// Initializes all references to the components
@@ -30,11 +30,7 @@ namespace Snake.Input
         {
             _movementController = GetComponent<MovementController>();
         }
-
-        #endregion
-
-        #region Movement
-
+        
         /// <summary>
         /// Handles player's movement input & sends it to the movement controller
         /// </summary>
@@ -46,8 +42,6 @@ namespace Snake.Input
             var axis = ctx.ReadValue<Vector2>();
             _movementController.UpdateMovementDirection(axis);
         }
-
-        #endregion
 
         #endregion
     }

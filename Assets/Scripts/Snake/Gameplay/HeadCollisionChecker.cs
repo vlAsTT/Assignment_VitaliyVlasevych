@@ -1,25 +1,22 @@
-using System;
 using Core;
 using Items.Core;
-using Snake.Movement;
 using UnityEngine;
 
 namespace Snake.Gameplay
 {
-    public class TailIncreaser : MonoBehaviour
+    /// <summary>
+    /// Handles Collision of Snake's Head with different in-game objects
+    /// </summary>
+    public class HeadCollisionChecker : MonoBehaviour
     {
-        public MovementController _movementController;
-
-        private void Start()
-        {
-            _movementController = GetComponentInParent<MovementController>();
-        }
-
-        #region Collision
-
+        /// <summary>
+        /// Called when snake's head collides with any other in-game object
+        /// </summary>
+        /// <param name="other">Collider of hit object</param>
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag.Equals("Item"))
+            // Check for a hit object tag
+            if (other.tag.Equals("Item")) // Destroy item & Add Score for it
             {
                 // Call an event
                 ItemDelegates.OnItemDestroy();
@@ -31,14 +28,12 @@ namespace Snake.Gameplay
                 // Destroy item object
                 Destroy(other.gameObject);
             }
-            else if (other.tag.Equals("Snake") || other.tag.Equals("Edge"))
+            else if (other.tag.Equals("Snake") || other.tag.Equals("Edge")) // Game Over
             {
                 // Call Game Over method on GameManager that stops game and calls UI manager
                 GameManager.Instance.GameOver();
             }
             
         }
-
-        #endregion
     }
 }

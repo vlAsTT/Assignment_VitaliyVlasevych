@@ -36,7 +36,7 @@ namespace Items.Core
 
         /// <summary>
         /// Color if the item
-        /// </summary>
+        /// </summary>n
         [JsonConverter(typeof(StringEnumConverter))]
         public ItemColor color;
         

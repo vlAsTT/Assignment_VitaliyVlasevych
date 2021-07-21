@@ -23,7 +23,7 @@ namespace Snake.Movement
     }
 
     /// <summary>
-    /// 
+    /// Handles all movement-related functionality and also includes tail spawning functionality
     /// </summary>
     public class MovementController : MonoBehaviour
     {
@@ -32,7 +32,7 @@ namespace Snake.Movement
         #region Movement
 
         /// <summary>
-        /// 
+        /// Base speed of the snake
         /// </summary>
         [Header("Movement Information")]
         [Tooltip("Initial speed of the snake")][SerializeField] private float baseSpeed = 10.0f;
@@ -52,9 +52,12 @@ namespace Snake.Movement
 
         #region Tail Spawn Information
 
+        /// <summary>
+        /// Prefab that is being spawned when tail is enlarged
+        /// </summary>
+        /// <seealso cref="SpawnTail"/>
         [Header("Tail Spawn Information")]
         [SerializeField] private GameObject tailPrefab;
-        [SerializeField] private GameObject tailObject;
 
         #endregion
 
@@ -121,6 +124,7 @@ namespace Snake.Movement
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         private void InitSnakeDirection()
         {
+            // Obtains random starting direction
             var currentDirection = GetRandomDirection();
 
             // Depending on the randomly obtained direction - sets body positions & forward vectors accordingly
@@ -213,6 +217,7 @@ namespace Snake.Movement
             // Snake Head Movement
             _snakeParts[0].Translate(_snakeParts[0].forward * (_currentSpeed * Time.smoothDeltaTime), Space.World);
 
+            // Movement of all other body parts
             for (int i = 1; i < _snakeParts.Count; i++)
             {
                 var currentBodyPart = _snakeParts[i];
@@ -240,7 +245,9 @@ namespace Snake.Movement
         {
             // Debug.Log($"Called Movement Controller: ({directions.x}, {directions.y}) ; Current Player's Forward Vector: {snakeHead.forward}");
 
-            // Up & Down Forward
+            // Check for the current forward vector and what inputs are available to the user
+            // For e.g. if snake is heading forward/down - buttons W/S won't do anything, same situation for W/S when
+            // snake is heading left/right directions
             if (_snakeHead.forward == Vector3.back || _snakeHead.forward == Vector3.forward)
             {
                 switch (directions.x)
@@ -271,6 +278,11 @@ namespace Snake.Movement
 
         #region Gameplay
 
+        /// <summary>
+        /// Spawns a new tail part
+        /// </summary>
+        /// <seealso cref="tailPrefab"/>
+        /// <seealso cref="_snakeParts"/>
         private void SpawnTail()
         {
             var tailPart = Instantiate(tailPrefab, _snakeParts[_snakeParts.Count - 1].position, Quaternion.identity);
@@ -279,13 +291,6 @@ namespace Snake.Movement
         }
 
         #endregion
-
-        // Used for debug to see the forward transform of the snake
-        // private void OnDrawGizmos()
-        // {
-        //     Gizmos.color = Color.red;
-        //     Gizmos.DrawRay(snakeHead.position, snakeHead.forward);
-        // }
 
         #endregion
     }
