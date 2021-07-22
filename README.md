@@ -14,9 +14,9 @@ The game's purpose is to build a 2D or 3D snake game! The snake grows by a lengt
 ------------------------------------
 # Demo
 ------------------------------------
-Here will be the demo
+Demo is available via [this link](https://youtu.be/wBjK547qC50).
 
-**P.S.** To run it in the Editor - start from \_BootLoader Scene
+**P.S.** To run it in the Editor - start from \_BootLoader Scene or MainMenu
 
 ------------------------------------
 # Code Overview
@@ -60,3 +60,4 @@ I will be glad to answer any of your questions & looking forward for your reply!
 ------------------------------------
 - [Low Poly Ultimate Pack by polyperfect](https://assetstore.unity.com/packages/3d/props/low-poly-ultimate-pack-54733) - I would do just a simpler level, but as visuals are always important - I decided to use this great low poly pack for the level design
 - [Simple Fantasy UI ](https://assetstore.unity.com/packages/2d/gui/icons/simple-fantasy-ui-140925) - Originally I had more simple design, same as to the other asset pack used, as it's only for the visuals - I would find a replacement for it.
+- - [Interface and Item Sounds](https://assetstore.unity.com/packages/audio/sound-fx/interface-and-item-sounds-89646) - Audio always improves user experience, so I thought of adding at least some click & item spawn SFXs. However, in case if I couldn't use this asset - I would rather find a replacement for it or record my own.
