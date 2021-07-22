@@ -14,7 +14,7 @@ The game's purpose is to build a 2D or 3D snake game! The snake grows by a lengt
 ------------------------------------
 # Demo
 ------------------------------------
-![Demo](https://youtu.be/wBjK547qC50)
+Demo is available via [this link](https://youtu.be/wBjK547qC50).
 
 **P.S.** To run it in the Editor - start from \_BootLoader Scene
 
