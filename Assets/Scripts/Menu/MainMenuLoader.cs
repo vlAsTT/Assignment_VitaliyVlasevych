@@ -41,6 +41,17 @@ namespace Menu
         [Tooltip("Reference to the top score text object that displays the top score")]
         [SerializeField] private TextMeshProUGUI topScoreField;
 
+        /// <summary>
+        /// Sound that is being played when Player clicks on the button
+        /// </summary>
+        [Header("Sound Effects")] 
+        [Tooltip("Sound that is being played when Player clicks on the button")][SerializeField] private AudioClip clickSound;
+
+        /// <summary>
+        /// Reference to the Audio Source
+        /// </summary>
+        private AudioSource _audioSource;
+        
         #endregion
 
         /// <summary>
@@ -55,11 +66,19 @@ namespace Menu
         #region Unity Standard
 
         /// <summary>
-        /// Checks that all variables are initialized
+        /// Checks that all variables are initialized and initialize variables
         /// </summary>
         private void Start()
         {
-            if (!menu || !loadingScreen || !loadingProgressBar || !topScoreField)
+            if (!Camera.main)
+            {
+                Debug.LogError("Main Camera is missing");
+                return;
+            }
+            
+            _audioSource = Camera.main.GetComponent<AudioSource>();
+
+            if (!menu || !loadingScreen || !loadingProgressBar || !topScoreField || !_audioSource || !clickSound)
             {
                 Debug.LogError($"Some variables are not initialized correctly at {name}");
             }
@@ -77,6 +96,8 @@ namespace Menu
         /// <seealso cref="SceneManager"/>
         public void StartGame()
         {
+            PlayClickSound();
+            
             HideMenu();
             ShowLoadingScreen();
 
@@ -92,6 +113,8 @@ namespace Menu
         /// </summary>
         public void ShowTopScore()
         {
+            PlayClickSound();
+
             topScoreField.text = PlayerPrefs.GetInt("TopScore", 0).ToString();
         }
 
@@ -100,6 +123,8 @@ namespace Menu
         /// </summary>
         public void Exit()
         {
+            PlayClickSound();
+
 #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
 #endif
@@ -109,6 +134,15 @@ namespace Menu
         #endregion
 
         #region Utility Methods
+
+        /// <summary>
+        /// Plays one shot of click sound
+        /// </summary>
+        /// <seealso cref="clickSound"/>
+        private void PlayClickSound()
+        {
+            _audioSource.PlayOneShot(clickSound);
+        }
 
         /// <summary>
         /// Hides the Main Menu

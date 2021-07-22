@@ -58,6 +58,12 @@ namespace Core
         [SerializeField] private List<ItemPrefab> itemPrefabsDictionary;
         
         /// <summary>
+        /// Sound that is being played when Item is destroyed
+        /// </summary>
+        [Header("Sound Effects")]
+        [Tooltip("Sound that is being played when Item is destroyed")][SerializeField] private AudioClip itemSpawnSound;
+        
+        /// <summary>
         /// Reference to the json file with all items information
         /// </summary>
         /// <seealso cref="TextAsset"/>
@@ -69,6 +75,11 @@ namespace Core
         /// </summary>
         /// <seealso cref="ItemsDB"/>
         private ItemsDB _itemsDB;
+        
+        /// <summary>
+        /// Reference to the Audio Source
+        /// </summary>
+        private AudioSource _audioSource;
 
         #endregion
         
@@ -81,6 +92,14 @@ namespace Core
         /// </summary>
         private void Start()
         {
+            if (!Camera.main)
+            {
+                Debug.LogError("Main Camera is missing");
+                return;
+            }
+            
+            _audioSource = Camera.main.GetComponent<AudioSource>();
+            
             // Subscribe to onItemDestroy event
             ItemDelegates.onItemDestroy += SpawnRandomItem;
 
@@ -129,6 +148,8 @@ namespace Core
                 // Setting data of an item to the instance
                 newItem.GetComponent<ItemMonoObject>().SetData(obj);
             }
+            
+            _audioSource.PlayOneShot(itemSpawnSound);
         }
 
         private Vector3 GetRandomPointBetweenVectors(Vector3 firstVector, Vector3 secondVector)

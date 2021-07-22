@@ -55,4 +55,5 @@ MonoBehaviour:
   - type: 1
     color: 2
     prefab: {fileID: 5429315903345394212, guid: 9476c6604359c7f449dfdbc76ce4dd86, type: 3}
+  itemSpawnSound: {fileID: 8300000, guid: 06ccd9d25e9d7fd47862339ea173079c, type: 3}
   jsonItemsFile: {fileID: 4900000, guid: 8420364a3c8408a4dba8907ad022f404, type: 3}

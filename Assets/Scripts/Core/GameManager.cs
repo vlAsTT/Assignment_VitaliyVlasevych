@@ -1,3 +1,4 @@
+using System;
 using Items.Core;
 using UI;
 using UnityEngine;
@@ -47,6 +48,21 @@ namespace Core
 
         #endregion
 
+        #region Sound
+
+        /// <summary>
+        /// Sound that is being played when Player clicks on the button
+        /// </summary>
+        [Header("Sound Effects")] 
+        [Tooltip("Sound that is being played when Player clicks on the button")][SerializeField] private AudioClip clickSound;
+
+        /// <summary>
+        /// Reference to the Audio Source
+        /// </summary>
+        private AudioSource _audioSource;
+
+        #endregion
+        
         #region References
 
         /// <summary>
@@ -77,6 +93,17 @@ namespace Core
             {
                 _instance = this;
             }
+        }
+
+        private void Start()
+        {
+            if (!Camera.main)
+            {
+                Debug.LogError("Main Camera is missing");
+                return;
+            }
+            
+            _audioSource = Camera.main.GetComponent<AudioSource>();
         }
 
         #endregion
@@ -155,6 +182,8 @@ namespace Core
         /// <seealso cref="SceneManager"/>
         public void ProceedToMainMenu()
         {
+            _audioSource.PlayOneShot(clickSound);
+            
             // Unfreezes time, so next time game continues fine
             Time.timeScale = 1;
             

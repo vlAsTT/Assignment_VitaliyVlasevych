@@ -34,7 +34,7 @@ namespace UI
         /// </summary>
         [Tooltip("Reference to the Game Over score text object that displays final score")]
         [SerializeField] private TextMeshProUGUI gameOverScoreField;
-        
+
         #endregion
 
         #region Methods
