@@ -50,6 +50,9 @@ List of Additive Scenes:
 ### XML & Comments
 As I was approaching it as if there were several people working on it - I have added appropriate XML tags to all variables, methods & classes to support auto-generation of documentation and all hints in the IDE. To avoid any missunderstandings in the code - I also added some comments that explain some moments.
 
+### Audio
+I have added two small SFX for the better user responsiveness as it's a pretty small chunks of code - I did not separate them into AudioManager scripts, but if there is an expansion on the Audio side - it will be better to refactor this functionality to keep the task separations between scripts and better architecture generally.
+
 ## Overview
 In the core of my approach was an ability to easily expand the code & modify it for new needs if needed as well as deliver flawless & fast workflow for all possible teams working on the project. I have used a various set of techniques & patterns and looking at the stability of the build as well as its performance (with almost no optimization) I believe it's a great showcase of my knowledge.
 
