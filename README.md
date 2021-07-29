@@ -3,14 +3,6 @@
  
 The game's purpose is to build a 2D or 3D snake game! The snake grows by a length of 1 every time it eats a food on the map. 1 food spawns on the map at the start of the game and every time the snake eats the food - a new food piece gets spawned somewhere else on the map. The game is over when the snake collides with the edge of the map or itself.
 
-### Requirements
-<ul>
- <li><strong>Date of submission:</strong> 22/07 Thursday 10 AM</li>
- <li>Only my code allowed</li>
- <li>Third party utilities are allowed (ie: XML loading library)</li>
- <li>Use Latest available Unity version</li> 
-</ul>
-
 ------------------------------------
 # Demo
 ------------------------------------
@@ -54,13 +46,11 @@ As I was approaching it as if there were several people working on it - I have a
 I have added two small SFX for the better user responsiveness as it's a pretty small chunks of code - I did not separate them into AudioManager scripts, but if there is an expansion on the Audio side - it will be better to refactor this functionality to keep the task separations between scripts and better architecture generally.
 
 ## Overview
-In the core of my approach was an ability to easily expand the code & modify it for new needs if needed as well as deliver flawless & fast workflow for all possible teams working on the project. I have used a various set of techniques & patterns and looking at the stability of the build as well as its performance (with almost no optimization) I believe it's a great showcase of my knowledge.
-
-I will be glad to answer any of your questions & looking forward for your reply!
+In the core of my approach was an ability to easily expand the code & modify it for new needs if needed as well as deliver flawless & fast workflow for all possible teams working on the project.
 
 ------------------------------------
 # Assets
 ------------------------------------
-- [Low Poly Ultimate Pack by polyperfect](https://assetstore.unity.com/packages/3d/props/low-poly-ultimate-pack-54733) - I would do just a simpler level, but as visuals are always important - I decided to use this great low poly pack for the level design
-- [Simple Fantasy UI ](https://assetstore.unity.com/packages/2d/gui/icons/simple-fantasy-ui-140925) - Originally I had more simple design, same as to the other asset pack used, as it's only for the visuals - I would find a replacement for it.
-- [Interface and Item Sounds](https://assetstore.unity.com/packages/audio/sound-fx/interface-and-item-sounds-89646) - Audio always improves user experience, so I thought of adding at least some click & item spawn SFXs. However, in case if I couldn't use this asset - I would rather find a replacement for it or record my own.
+- [Low Poly Ultimate Pack by polyperfect](https://assetstore.unity.com/packages/3d/props/low-poly-ultimate-pack-54733)
+- [Simple Fantasy UI ](https://assetstore.unity.com/packages/2d/gui/icons/simple-fantasy-ui-140925)
+- [Interface and Item Sounds](https://assetstore.unity.com/packages/audio/sound-fx/interface-and-item-sounds-89646)
